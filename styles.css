@@ -1,0 +1,27 @@
+body {
+	font-family: sans-serif;
+}
+
+#name-tag {
+	background-color: gray;
+	color: white;
+	font-size: 20px;
+}
+
+#about {
+margin: 0 auto;
+width: 60%;
+}
+
+.container {
+	display: flex;
+}
+
+.column {
+	align-self: auto: 
+}
+
+#pic img{
+	height: auto;%;
+	width: 50%;
+}
