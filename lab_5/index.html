@@ -283,28 +283,39 @@
 
     let strCountries = JSON.stringify(countries);
     sessionStorage.setItem("countries_array", strCountries);
+
       function retrieveCountries() {
       // Retrieve your countries code from the session
-            let data = sessionStorage.getItem('countries_array');
+
+      let data = sessionStorage.getItem('countries_array');
+      // get random, then delete it
 
       // Set the array to an appropriate variable
             let objRetCountries = JSON.parse(data);
 
-      // Loop through that variable
-            for (var i = 0; i < objRetCountries.length; i++) {
-                  // Limit the number of countries listed to fifty
-                  if (i < 50) {
+      // making a spare array to delete elements from to avoid duplicates
+            let spareArr = objRetCountries;
+            let new_arr = []; //store the 50 randomly picked countries
 
-                        // Randomize which fifty countries are displayed on load
-                        let random = Math.floor(Math.random() * objRetCountries.length);
-                        objRetCountries[i] = objRetCountries[random];
+            for (var i = 0; i < 50; i++) {
 
-                        // Replace the supplied list's entries with country names
-                        console.log(objRetCountries[i]["name"]);
-                  } else {
-                        break;
-                  }
+                  let random = Math.floor(Math.random() * spareArr.length);
+                  new_arr.push(spareArr[random]["name"]);
+                  spareArr.splice(random, 1);
+
             }
+
+                  let content = document.getElementsByClassName("content")[0];
+                  content.innerHTML = ""
+                  let ol = document.createElement('ol');
+                  content.appendChild(ol);
+
+                  for (var i = 0; i < new_arr.length; i++) {
+                     let li = document.createElement('li');
+                     ol.appendChild(li);   
+                     li.innerHTML = new_arr[i];
+                  }
+
       }
       
 
